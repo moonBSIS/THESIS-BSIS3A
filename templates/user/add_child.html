@@ -1,0 +1,60 @@
+{% extends "user/layout.html"%} {% block content %}
+<div class="container">
+  {% include 'user/navbar.html' %}
+  <h4 class="text-center my-3">Child Information</h4>
+  <div class="row d-flex justify-content-center">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+      {% with messages=get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category,message in messages %}
+      <div class="alert alert-{{category}}">
+        <strong>{{message}}</strong>
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
+      <div class="card">
+        <div class="card-body">
+          <form method="post">
+            {{ form.hidden_tag() }}
+            <p>
+              {{ form.first_name.label }}<br />
+              {{ form.first_name(size=32) }}<br />
+              {% for error in form.first_name.errors %}
+              <span style="color: red">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>
+              {{ form.last_name.label }}<br />
+              {{ form.last_name(size=32) }}<br />
+              {% for error in form.last_name.errors %}
+              <span style="color: red">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>
+              {{ form.weight.label }}<br />
+              {{ form.weight(size=32) }}<br />
+              {% for error in form.weight.errors %}
+              <span style="color: red">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>
+              {{ form.height.label }}<br />
+              {{ form.height(size=32) }}<br />
+              {% for error in form.height.errors %}
+              <span style="color: red">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>
+              {{ form.age.label }}<br />
+              {{ form.age() }}<br />
+              {% for error in form.age.errors %}
+              <span style="color: red">[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>{{ form.submit() }}</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+{% endblock content %}
